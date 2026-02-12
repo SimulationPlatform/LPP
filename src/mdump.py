@@ -133,11 +133,9 @@ m.etype = "color"                          set column returned as "type" by viz
 #     evalues[i][j] = 2d array of floats, i = 0 to Nel-1, j = 0 to Ncol
 
 try:
-    import numpy as np
-    oldnumeric = False
+  import numpy as np
 except:
-    import Numeric as np
-    oldnumeric = True
+  raise Exception("no numpy Python module available")
 
 try: from DEFAULTS import PIZZA_GUNZIP
 except: PIZZA_GUNZIP = "gunzip"
@@ -318,8 +316,7 @@ class mdump:
         for i in range(1,n):
           words += f.readline().split()
         floats = list(map(float,words))
-        if oldnumeric: values = np.zeros((n,ncol),np.Float)
-        else: values = np.zeros((n,ncol),np.float)
+        values = np.zeros((n,ncol),float)
         start = 0
         stop = ncol
         for i in range(n):

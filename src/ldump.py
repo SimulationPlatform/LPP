@@ -75,11 +75,9 @@ l.owrap(...)                      wrap lines to same image as their atoms
 #     atoms[i][j] = 2d array of floats, i = 0 to natoms-1, j = 0 to ncols-1
 
 try:
-    import numpy as np
-    oldnumeric = False
+  import numpy as np
 except:
-    import Numeric as np
-    oldnumeric = True
+  raise Exception("no numpy Python module available")
 
 try: from DEFAULTS import PIZZA_GUNZIP
 except: PIZZA_GUNZIP = "gunzip"
@@ -202,8 +200,7 @@ class ldump:
         for i in range(1,snap.natoms):
           words += f.readline().split()
         floats = list(map(float,words))
-        if oldnumeric: atoms = np.zeros((snap.natoms,ncol),np.Float)
-        else: atoms = np.zeros((snap.natoms,ncol),np.float)
+        atoms = np.zeros((snap.natoms,ncol),float)
         start = 0
         stop = ncol
         for i in range(snap.natoms):

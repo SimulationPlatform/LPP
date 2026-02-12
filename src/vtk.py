@@ -346,7 +346,8 @@ def particleGran(file,atoms,names,n_values):
       continue
 
     vectortype = 'float'
-    if atoms != []:
+    #if atoms != []:
+    if atoms.size > 0:
       vectortype = typestr(atoms[0][vectors[key]])
       if 'float' in vectortype: vectortype = 'float'
       elif 'int' in vectortype: vectortype = 'int'
@@ -361,7 +362,8 @@ def particleGran(file,atoms,names,n_values):
   # print SCALARS
   for key in scalars.keys():
     scalartype =''
-    if atoms != []:
+    #if atoms != []:
+    if atoms.size > 0:
       scalartype = typestr(atoms[0][scalars[key]])
       if 'float' in scalartype: scalartype = 'float'
       elif 'int' in scalartype: scalartype = 'int'
